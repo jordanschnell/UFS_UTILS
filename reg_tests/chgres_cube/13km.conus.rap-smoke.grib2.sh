@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #-----------------------------------------------------------------------------
-# Invoke chgres to create 13-km CONUS coldstart files using RAP GRIB2 data
-# as input.  The coldstart files are then compared to baseline files
+# Invoke chgres to create 13-km CONUS coldstart files using RAP-SMOKE GRIB2 data
+# as input. i.e., if one desires MASSDEN/SMOKE in the ICs/LBCS
+# The coldstart files are then compared to baseline files
 # using the 'nccmp' utility.  This script is run by the machine specific 
 # driver script.
 #-----------------------------------------------------------------------------
@@ -81,7 +82,7 @@ for files in *.nc
 do
   if [ -f $files ]; then
     echo CHECK $files
-    $NCCMP -dmfqS $files $HOMEreg/baseline_data/13km_conus_rap_grib2/$files
+    $NCCMP -dmfqS $files $HOMEreg/baseline_data/13km_conus_rap-smoke_grib2/$files
     iret=$?
     if [ $iret -ne 0 ]; then
       test_failed=1
